@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [newTodo, setNewTodo] = useState();
+  const [todos, setTodos] = useState([]);
+   
+
+  const handleChanges = (evt) => {
+    console.log('its connected')
+    evt.preventDefault();
+    setNewTodo(evt.target.value)
+    console.log(newTodo)
+  }
+
+  const handleSubmit = (evt) => {
+    console.log('its working')
+    evt.preventDefault();
+    console.log(todos)
+    setTodos(newTodo)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Todo List</h1>
       </header>
+      <div className="Todo-list">
+      {todos}
+      </div>
+      <input onChange={handleChanges} ></input>
+      <button onClick={handleSubmit}>Add Todo</button>
     </div>
   );
 }
